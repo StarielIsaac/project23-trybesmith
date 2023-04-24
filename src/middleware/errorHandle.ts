@@ -5,7 +5,7 @@ import ErrorLaunch from '../utils/errorLaunch';
 
 const errorHandler : ErrorRequestHandler = (err : unknown, req, res, _next) => {
   if (err instanceof ErrorLaunch) {
-    return res.status(401).json({ message: err.message });
+    return res.status(err.code).json({ message: err.message });
   }
   return res.status(500).json({ message: 'internal server error' });
 };
