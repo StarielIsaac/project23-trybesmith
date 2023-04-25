@@ -1,6 +1,7 @@
 import express from 'express';
 import errorHandler from './middleware/errorHandle';
 import productsRouter from './routers/productsRouter';
+import usersRouter from './routers/usersRouter';
 
 // é usada para lidar com erros assíncronos no Express.js 
 require('express-async-errors');
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use('/products', productsRouter);
 
 // rota para o endpoint "/users"
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 
 // rota para o endpoint "/orders"
 // app.use('/orders', ordersRouter);

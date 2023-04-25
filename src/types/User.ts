@@ -3,5 +3,10 @@ export interface User {
   username: string,
   vocation: string,
   level: number,
-  password: string,
+  password?: string,
+}
+
+export interface Login { 
+  id: number | undefined,
+  username: string | undefined,
 }
