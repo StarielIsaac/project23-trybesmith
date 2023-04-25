@@ -6,7 +6,8 @@ const config : SignOptions = {
   algorithm: 'HS256',
 };
 
-const secret = process.env.JWT_SECRET || 'default_secret';
+// const secret = process.env.JWT_SECRET || 'default_secret';
+const secret = 'process.env.JWT_SECRET';
 
 export default function createToken(values: User | Login) : string {
   const token = jwt.sign(values, secret, config);

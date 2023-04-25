@@ -1,13 +1,14 @@
 import express from 'express';
+import 'express-async-errors';
 import errorHandler from './middleware/errorHandle';
 import productsRouter from './routers/productsRouter';
 import usersRouter from './routers/usersRouter';
 import ordersRouter from './routers/ordersRouter';
+import loginRouter from './routers/loginRouter';
 
 // é usada para lidar com erros assíncronos no Express.js 
-require('express-async-errors');
 
-// inicia o Express
+// inicia o Express 
 const app = express();
 // converte a response no formato .json
 app.use(express.json());
@@ -22,7 +23,7 @@ app.use('/users', usersRouter);
 app.use('/orders', ordersRouter);
 
 // rota para o endpoint "/login"
-// app.use('/login', loginRouter);
+app.use('/login', loginRouter);
 
 // middleware que trata erros
 app.use(errorHandler);
