@@ -1,5 +1,5 @@
 import { ObjLogin } from '../types/User';
-import createToken from '../auth/tokenJwt';
+import { createToken } from '../auth/tokenJwt';
 import loginModel from '../models/loginModel';
 import ErrorLaunch from '../utils/errorLaunch';
 

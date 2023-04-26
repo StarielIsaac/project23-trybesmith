@@ -9,11 +9,20 @@ const config : SignOptions = {
 // const secret = process.env.JWT_SECRET || 'default_secret';
 const secret = 'process.env.JWT_SECRET';
 
-export default function createToken(values: User | Login) : string {
+const createToken = (values: User | Login) : string => {
   const token = jwt.sign(values, secret, config);
   return token;
-}
+};
 
-// export default function validateToken () {
-//   jwt.verify()
-// }
+const validateToken = (token: string) : number => {
+  const verify = jwt.verify(token, secret);
+
+  if (typeof verify !== 'string') return verify.id || 0;
+
+  return 0;
+};
+
+export {
+  createToken,
+  validateToken,
+};

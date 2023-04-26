@@ -1,7 +1,7 @@
 import { ResultSetHeader } from 'mysql2';
 import { User } from '../types/User';
 import connection from './connection';
-import createToken from '../auth/tokenJwt';
+import { createToken } from '../auth/tokenJwt';
 
 // select => RowDataPacket[]
 // update => OkPacket

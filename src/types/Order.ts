@@ -5,7 +5,11 @@ export interface Order {
 
 // representa um objeto com o ids dos produtos associados a estes.
 export interface OrderWithIdAssociates { 
-  id: number,
+  id?: number,
   userId: number,
+  productsIds: number[],
+}
+
+export interface CreateNewOrder { 
   productsIds: number[],
 }

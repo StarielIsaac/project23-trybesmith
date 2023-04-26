@@ -1,7 +1,7 @@
-import { RowDataPacket } from 'mysql2';
+import { RowDataPacket, ResultSetHeader } from 'mysql2';
 import renameUserId from '../utils/renameUserId';
 import connection from './connection';
-import { OrderWithIdAssociates } from '../types/Order';
+import { OrderWithIdAssociates, CreateNewOrder } from '../types/Order';
 // import { User } from '../types/User';
 
 // select => RowDataPacket[]
@@ -24,6 +24,27 @@ async function findAllOrders(): Promise <OrderWithIdAssociates[]> {
   return newResult as OrderWithIdAssociates[];
 }
 
+async function createOrder(order: CreateNewOrder, id: number): Promise <OrderWithIdAssociates> {
+  const { productsIds } = order;
+
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(`
+    INSERT INTO Trybesmith.orders (user_id) VALUES (?)`, [id]);
+
+  await Promise.all(productsIds.map((product) => (
+    connection.execute<ResultSetHeader>(
+      'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+      [insertId, product],
+    ))));
+
+  const newOrder = {
+    userId: id,
+    productsIds,
+  } as OrderWithIdAssociates;
+
+  return newOrder;
+}
+
 export default {
   findAllOrders,
+  createOrder,
 };

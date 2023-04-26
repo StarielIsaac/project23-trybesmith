@@ -20,7 +20,7 @@ app.use('/products', productsRouter);
 app.use('/users', usersRouter);
 
 // rota para o endpoint "/orders"
-app.use('/orders', ordersRouter);
+app.use('/orders', ordersRouter); 
 
 // rota para o endpoint "/login"
 app.use('/login', loginRouter);
