@@ -1,3 +1,4 @@
+// representa um produto
 export interface Product { 
   id?: number,
   name: string,

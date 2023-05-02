@@ -5,8 +5,10 @@ import valitatePassword from '../middleware/validatePassword';
 import valitateUsername from '../middleware/validateUsername';
 import valitateLevel from '../middleware/validateLevel';
 
+// Cria a instância do router
 const usersRouter = Router();
 
+// rota para criar um novo usuario
 usersRouter.post(
   '', 
   valitateLevel,
